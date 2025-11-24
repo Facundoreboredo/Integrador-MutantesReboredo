@@ -13,6 +13,9 @@ import org.example.mutantes.validation.ValidDna;
 public class DnaRequest {
     @NotNull
     @ValidDna // Validación personalizada
-    @Schema(example = "[\"ATGCGA\",\"CAGTGC\",\"TTATGT\",\"AGAAGG\",\"CCCCTA\",\"TCACTG\"]")
+    @Schema(
+            description = "Array de Strings que representan la secuencia de ADN (NxN)",
+            example = "[\"ATGCGA\",\"CAGTGC\",\"TTATGT\",\"AGAAGG\",\"CCCCTA\",\"TCACTG\"]"
+    )
     private String[] dna;
 }

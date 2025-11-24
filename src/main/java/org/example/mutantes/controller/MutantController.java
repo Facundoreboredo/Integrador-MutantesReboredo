@@ -2,6 +2,7 @@ package org.example.mutantes.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,9 +24,16 @@ public class MutantController {
     private final StatsService statsService; // (Implementar lógica similar a MutantService)
 
     @PostMapping("/mutant")
-    @Operation(summary = "Detectar si un humano es mutante")
-    @ApiResponse(responseCode = "200", description = "Es Mutante")
-    @ApiResponse(responseCode = "403", description = "No es Mutante")
+    @Operation(
+            summary = "Detectar si un humano es mutante",
+            description = "Detecta si un humano es mutante basándose en su secuencia de ADN. " +
+                    "Se busca si existen más de una secuencia de 4 letras iguales de forma oblicua, horizontal o vertical."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Es Mutante (Se detectaron más de una secuencia)"),
+            @ApiResponse(responseCode = "403", description = "No es Mutante (Es humano)"),
+            @ApiResponse(responseCode = "400", description = "Error de Validación (ADN inválido, matriz no cuadrada, caracteres extraños o null)")
+    })
     public ResponseEntity<Void> detectMutant(@Valid @RequestBody DnaRequest request) {
         boolean isMutant = mutantService.analyzeDna(request.getDna());
         if (isMutant) {
