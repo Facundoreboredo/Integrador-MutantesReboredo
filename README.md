@@ -4,6 +4,8 @@
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.0-brightgreen.svg)](https://spring.io/projects/spring-boot)
 [![Coverage](https://img.shields.io/badge/Coverage-90%25-green.svg)]()
 
+Link Render: https://integrador-mutantesreboredo.onrender.com
+
 API REST que detecta si un humano es mutante basándose en su secuencia de ADN.
 
 ## Descripción del Proyecto
@@ -88,4 +90,3 @@ Envia una secuencia de ADN para ser analizada.
     ]
 }
 
-Link Render: https://integrador-mutantesreboredo.onrender.com
